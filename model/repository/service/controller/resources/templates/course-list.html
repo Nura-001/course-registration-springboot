@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Course Registration</title>
+</head>
+<body>
+
+<h2>Add Course</h2>
+<form action="/courses" method="post">
+    Course Name: <input type="text" name="courseName" required>
+    Credit: <input type="number" name="credit" required>
+    <button type="submit">Add</button>
+</form>
+
+<hr>
+
+<h2>Course List</h2>
+<table border="1">
+<tr>
+    <th>ID</th>
+    <th>Course</th>
+    <th>Credit</th>
+    <th>Action</th>
+</tr>
+
+<tr th:each="c : ${courses}">
+    <td th:text="${c.id}"></td>
+    <td th:text="${c.courseName}"></td>
+    <td th:text="${c.credit}"></td>
+    <td>
+        <a th:href="@{/courses/edit/{id}(id=${c.id})}">Edit</a> |
+        <a th:href="@{/courses/delete/{id}(id=${c.id})}">Delete</a>
+    </td>
+</tr>
+</table>
+
+</body>
+</html>
